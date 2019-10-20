@@ -44,13 +44,13 @@
 				hasProvider: false,
 				account: '',
 				password: '',
-				userToken:'',
+				userToken: '',
 				positionTop: 0
 			}
 		},
 		computed: mapState(['forcedLogin']),
 		methods: {
-			...mapMutations(['login','changeLogin']),
+			...mapMutations(['login', 'changeLogin']),
 			initProvider() {
 				const filters = ['weixin', 'qq', 'sinaweibo'];
 				uni.getProvider({
@@ -85,7 +85,6 @@
 				 * 客户端对账号信息进行一些必要的校验。
 				 * 实际开发中，根据业务需要进行处理，这里仅做示例。
 				 */
-				console.log(this.account.length)
 				if (this.account.length < 5) {
 					uni.showToast({
 						icon: 'none',
@@ -109,18 +108,22 @@
 					"Account": this.account,
 					"Password": this.password
 				};
-				
+
 				this.$api.accountLogin(data).then(res => {
-				   // 获得数据 
-				   console.log('Success: ', res) 
-				   this.userToken = 'Bearer ' + res.Data.Token;
-				   this.changeLogin({ Authorization: this.userToken });
-				   uni.redirectTo({
-					   url: '../main/main'
-				   });
+					// 获得数据 
+					console.log('Success: ', res)
+					this.userToken = 'Bearer ' + res.Data.Token;
+					this.changeLogin({
+						Authorization: this.userToken
+					});
+					this.login(this.account);
+					// 不能用 uni.redirectTo 轉到 tabBar pages
+					uni.switchTab({
+						url: '../main/main'
+					});
 				}).catch(res => {
-				　　// 失败进行的操作
-				  console.log('Fail: ', res) 
+					// 失败进行的操作
+					console.log('Fail: ', res)
 				})
 			},
 			oauth(value) {

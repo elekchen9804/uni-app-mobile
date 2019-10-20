@@ -10,9 +10,11 @@ const store = new Vuex.Store({
 		 */
 		forcedLogin: false,
 		hasLogin: false,
-		userName: "",
+		userId: "",
+		userBalance: "",
 		// 存储token
 		Authorization: uni.getStorageSync('Authorization') ? uni.getStorageSync('Authorization') : ''
+
 	},
 	mutations: {
 		// 修改token，并将token存入localStorage
@@ -20,13 +22,16 @@ const store = new Vuex.Store({
 			state.Authorization = user.Authorization;
 			uni.setStorageSync('Authorization', user.Authorization);
 		},
-		login(state, userName) {
-			state.userName = userName || '新用户';
+		login(state, userId) {
+			state.userId = userId;
 			state.hasLogin = true;
 		},
 		logout(state) {
-			state.userName = "";
+			state.userId = "";
 			state.hasLogin = false;
+		},
+		changeUserBalnce(state, balance) {
+			state.userBalance = balance;
 		}
 	}
 })

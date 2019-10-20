@@ -15,6 +15,8 @@ api.gameNavigationSort = params =>
 api.accountLogin = params =>
 	request.globalRequest(`${VERSION}/Account/Login`, 'POST', params, 0)
 
-
+// 取得自己的帳戶余額
+api.getUserBalance = params =>
+	request.globalRequest(`${VERSION}/Account/GetMyBalance`, 'POST', params, 1)
 
 export default api

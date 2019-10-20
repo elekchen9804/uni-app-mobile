@@ -1,21 +1,19 @@
 import urlConfig from './config.js'
+import store from '../store/index.js'
 
 const request = {}
 const headers = {}
 
 request.globalRequest = (url, method, data, power) => {
-
 	headers['Content-Type'] = 'application/json'
-	/* 权限判断 因为有的接口请求头可能需要添加的参数不一样，所以这里做了区分 */
+	/* 权限判断 是否需要 token */
 
 	switch (power) {
 		case 0:
 			headers['Authorization'] = ''
 			break;
 		case 1:
-			headers['Authorization'] = `Bearer ${
-               this.$store.state.Authorization
-           }`
+			headers['Authorization'] = `${store.state.Authorization}`
 			break;
 		default:
 			break;
