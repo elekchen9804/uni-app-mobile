@@ -9,8 +9,8 @@ const store = new Vuex.Store({
 		 * 是否需要强制登录
 		 */
 		forcedLogin: false,
-		hasLogin: false,
-		userId: "",
+		hasLogin: uni.getStorageSync('Login'),
+		userId: uni.getStorageSync('UserId'),
 		userBalance: "",
 		// 存储token
 		Authorization: uni.getStorageSync('Authorization') ? uni.getStorageSync('Authorization') : ''
@@ -25,10 +25,14 @@ const store = new Vuex.Store({
 		login(state, userId) {
 			state.userId = userId;
 			state.hasLogin = true;
+			uni.setStorageSync('Login', true);
+			uni.setStorageSync('UserId', userId);
 		},
 		logout(state) {
 			state.userId = "";
 			state.hasLogin = false;
+			uni.setStorageSync('Login', false);
+			uni.setStorageSync('UserId', '');
 		},
 		changeUserBalnce(state, balance) {
 			state.userBalance = balance;

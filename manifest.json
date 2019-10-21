@@ -75,7 +75,7 @@
     "h5" : {
         "title" : "test",
         "router" : {
-            "mode" : "hash"
+            "mode" : "history"
         }
     }
 }

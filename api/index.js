@@ -11,6 +11,11 @@ api.getSlideShow = params =>
 api.gameNavigationSort = params =>
 	request.globalRequest(`${VERSION}/GameNavigationSort/GetGameNavigationSort`, 'POST', params, 0)
 
+// 取得電子遊戲分類清單 (目前是要驗證才能拿資料@@)
+api.getSlotCategories = params => {
+	request.globalRequest(`${VERSION}/Game/GetSlotCategories`, 'POST', params, 1)
+}
+
 // 登入
 api.accountLogin = params =>
 	request.globalRequest(`${VERSION}/Account/Login`, 'POST', params, 0)

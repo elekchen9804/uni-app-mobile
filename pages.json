@@ -27,7 +27,11 @@
 				"navigationBarTitleText": "我的頁面"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/lobby/lobby",
+            "style" : {}
+        }
+    ],
 	"tabBar": {
 		"color": "#7a7e83",
 		"selectedColor": "#0faeff",

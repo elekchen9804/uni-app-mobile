@@ -5,9 +5,9 @@
 			<register></register>
 		</view>
 		<!-- #ifdef H5 -->
-		<!-- <view id="bg-video">
+		<view id="bg-video">
 			<video src="../../static/video/bg.mp4" muted="true" :controls="false" objectFit="fill" autoplay="ture" loop="true"></video>
-		</view> -->
+		</view>
 		<!-- #endif -->
 	</view>
 </template>
@@ -30,6 +30,11 @@
 </script>
 
 <style>
+	page {
+		background-image: url('../../static/img/login_bg.jpg');
+		background-size: 1;
+	}
+
 	#bg-video {
 		position: fixed;
 		z-index: 0;

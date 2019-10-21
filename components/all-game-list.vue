@@ -1,13 +1,13 @@
 <template>
 	<view>
-		<view class="game-tab navigation-sort" v-for="(nav, index) in gameNavigationSort" :key="index" @tap="changeSelected(nav)">
-			<view>
+		<view class="game-tab navigation-sort">
+			<view class="game-tab-item" v-for="(nav, index) in gameNavigationSort" :key="index" @tap="changeSelected(nav)">
 				{{nav.NavigationKindName}}
 			</view>
 		</view>
-		<view v-for="(nav, index) in gameNavigationSort" :key="nav.NavigationKind" class="game-list navigation-sort" v-show="selected == nav.NavigationKind"
-		 ng-cloak>
-			<view class="game-item" :class="game.Name" v-for="(game, index) in nav.NavigationSortList" :key="game.Name">
+		<view class="game-list" v-for="(nav, index) in gameNavigationSort" :key="nav.NavigationKind" v-show="selected == nav.NavigationKind">
+			<view class="game-list-item" :class="game.Name" v-for="(game, index) in nav.NavigationSortList" :key="game.Name"
+			 @tap="toLobby(game)">
 				{{game.NameCn}}
 			</view>
 		</view>
@@ -23,7 +23,6 @@
 			};
 		},
 		created() {
-
 			this.gameNavigationSort = [{
 				"NavigationKind": 12,
 				"NavigationKindName": "Sport",
@@ -778,6 +777,33 @@
 		methods: {
 			changeSelected(nav) {
 				this.selected = nav.NavigationKind;
+			},
+			toLobby(game) {
+				// 有大廳就轉跳
+				if (game.Url && game.Url.indexOf('Lobby') !== -1) {
+					uni.navigateTo({
+						url: `../lobby/lobby?Name=${game.Name}`
+					});
+				} else {
+					
+				}
+
+
+				// {
+				// 	"Name": "BtiSport",
+				// 	"IsHot": false,
+				// 	"IsNew": false,
+				// 	"IsEvent": false,
+				// 	"LangKey": "Bti_Sport",
+				// 	"Url": "/Account/LoginToBti",
+				// 	"UrlActionType": 2,
+				// 	"IsEmbedded": false,
+				// 	"NameTw": "BTI體育",
+				// 	"NameCn": "BTI体育",
+				// 	"NameEn": "BTI Sport",
+				// 	"NameTh": "BTI Sport",
+				// 	"ImageFileName": "8dbb425ec9c14d8d9d907a0753d77f24.png"
+				// }
 			}
 		}
 	}
@@ -804,9 +830,24 @@
 		width: 100%;
 	}
 
+	.game-tab {
+		margin-bottom: 10upx;
+	}
+
 	.game-tab,
-	.game-item{
-		display: inline-block;
-		vertical-align: top;
+	.game-list {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	.game-tab-item {
+		border: 1px solid #C8C7CC;
+		border-radius: 3px;
+	}
+
+	.game-list-item {
+		border: 1px solid #C8C7CC;
+		border-radius: 3px;
 	}
 </style>
