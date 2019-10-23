@@ -1,6 +1,29 @@
 <template>
 	<view>
-		<view class="input-group">
+		<view class="div form-group">
+			<input class="login_account" type="text" v-model="account" placeholder="帐号"></m-input>
+			<!-- <span class="clear-btn" ng-click="loginParams.account = ''">x</span> -->
+		</view>
+		<view class="div form-group">
+			<input class="login_password" type="password" v-model="password" placeholder="帐号"></m-input>
+			<!-- <span class="pw-hide-btn" ng-click="showLoginPassword = !showLoginPassword">
+				<i class="fa fa-eye" aria-hidden="true" ng-show="showLoginPassword"></i>
+				<i class="fa fa-eye-slash" aria-hidden="true" ng-show="!showLoginPassword"></i>
+			</span> -->
+		</view>
+		<!-- <view class="div form-group form-links">
+			<span class="remember-account-btn" ng-click="storeUserAccount = !storeUserAccount" ng-cloak>
+				<i class="fa fa-circle-o" aria-hidden="true" ng-show="!storeUserAccount"></i>
+				<i class="fa fa-check-circle" aria-hidden="true" ng-show="storeUserAccount"></i>
+				記住帳號
+			</span>
+			<span class="forget-btn" ng-click="lineChatClick()">忘記密碼 ?</span>
+		</view> -->
+		<button @tap="bindLogin">登入</button>
+
+
+
+		<!-- <view class="input-group">
 			<view class="input-row border">
 				<text class="title">账号：</text>
 				<m-input class="m-input" type="text" clearable focus v-model="account" placeholder="请输入账号"></m-input>
@@ -9,15 +32,15 @@
 				<text class="title">密码：</text>
 				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
 			</view>
-		</view>
-		<view class="btn-row">
+		</view> -->
+		<!-- <view class="btn-row">
 			<button type="primary" class="primary" @tap="bindLogin">登录</button>
 		</view>
 		<view class="action-row">
 			<navigator url="../reg/reg">注册账号</navigator>
 			<text>|</text>
 			<navigator url="../pwd/pwd">忘记密码</navigator>
-		</view>
+		</view> -->
 		<!-- <view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}">
 			<view class="oauth-image" v-for="provider in providerList" :key="provider.value">
 				<image :src="provider.image" @tap="oauth(provider.value)"></image>
@@ -170,7 +193,7 @@
 </script>
 
 <style>
-	.action-row {
+	/* .action-row {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -204,5 +227,93 @@
 		width: 60upx;
 		height: 60upx;
 		margin: 20upx;
+	} */
+
+	input {
+		width: 55%;
+		height: 11.5vw;
+		margin: 0 auto 10px;
+		padding-left: 18%;
+		padding-right: 15%;
+		padding-top: 0%;
+		font-size: 3.5vw;
+		background-color: rgba(0, 0, 0, 0.4);
+		border-radius: 20vw;
+		-webkit-border-radius: 20vw;
+		-moz-border-radius: 20vw;
+		background-position: 9% center;
+		background-repeat: no-repeat;
+	}
+
+	button {
+		width: 86%;
+		height: 11.5vw;
+		margin: 0 auto 10px;
+		padding-left: 18%;
+		padding-right: 15%;
+		padding-top: 6%;
+		font-size: 3.5vw;
+		background-color: rgba(0, 0, 0, 0.4);
+		border-radius: 20vw;
+		-webkit-border-radius: 20vw;
+		-moz-border-radius: 20vw;
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fd1c31+2,ff1599+100 */
+		background: #fd1c31;
+		/* Old browsers */
+		/* FF3.6-15 */
+		/* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, #fd1c31 2%, #ff1599 100%);
+		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fd1c31', endColorstr='#ff1599', GradientType=1);
+		/* IE6-9 */
+		color: #ffffff;
+		padding: 0;
+		font-size: 4.2vw;
+		background-color: rgba(155, 155, 155, 0.7);
+		margin-bottom: 25px;
+		margin-top: 10px;
+	}
+
+	button.active {
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#a0683d+2,684023+100 */
+		background: #a0683d;
+		/* Old browsers */
+		/* FF3.6-15 */
+		/* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, #a0683d 2%, #684023 100%);
+		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a0683d', endColorstr='#684023', GradientType=1);
+		/* IE6-9 */
+		color: #ffffff;
+	}
+
+	.remember-account-btn {
+		display: block;
+	}
+
+	.login_account {
+		background-image: url("https://cdn1.0a0s.com/Web.Mobile/_Common/Content/Views/CustomStyleVersion/images/V3/Home/login/icon_account.png");
+		background-size: 9%;
+	}
+
+	.login_password {
+		background-image: url("https://cdn1.0a0s.com/Web.Mobile/_Common/Content/Views/CustomStyleVersion/images/V3/Home/login/icon_password.png");
+		background-size: 9%;
+	}
+
+	.form-links .remember-account-btn {
+		width: 48%;
+		padding-left: 7%;
+		display: inline-block;
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.form-links .forget-btn {
+		width: 48%;
+		padding-right: 7%;
+		display: inline-block;
+		line-height: 8vw;
+		text-align: right;
 	}
 </style>

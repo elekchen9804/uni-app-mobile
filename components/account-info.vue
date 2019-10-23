@@ -3,7 +3,7 @@
 	<view>
 		<view>帳號: {{userId}}</view>
 		<view>餘額: {{userBalance}}</view>
-		<button class="refresh" @click="openPopup">刷新</button>
+		<button class="refresh" @tap="openPopup">刷新</button>
 		<uni-popup ref="popup" type="center">
 			<view class="title">一鍵取回彈窗</view>
 			<view>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-	import uniPopup from '../components/uni-ui/uni-popup/uni-popup.vue'
+	import {uniPopup} from '@dcloudio/uni-ui';
 	import {
 		mapState,
 		mapMutations

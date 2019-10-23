@@ -3,8 +3,7 @@
 		{
 			"path": "pages/main/main",
 			"style": {
-				// "navigationStyle":"custom"
-				"navigationBarTitleText": "奥义APP"
+				 "navigationStyle":"custom"
 			}
 		}, {
 			"path": "pages/login/login",
@@ -31,26 +30,66 @@
             "path" : "pages/lobby/lobby",
             "style" : {}
         }
+        ,{
+            "path" : "pages/mylink/mylink",
+            "style" : {
+				"navigationBarTitleText": "會員中心"
+			}
+        }
+        ,{
+            "path" : "pages/chat/chat",
+            "style" : {
+				"navigationBarTitleText": "在线客服"
+			}
+        }
+        ,{
+            "path" : "pages/promotion/promotion",
+            "style" : {
+				"navigationBarTitleText": "优惠活动"
+			}
+        }
+        ,{
+            "path" : "pages/deposit/deposit",
+            "style" : {
+				"navigationBarTitleText": "存款页面"
+			}
+        }
+        ,{
+            "path" : "pages/Withdraw/Withdraw",
+            "style" : {
+				"navigationBarTitleText": "取款页面"
+			}
+        }
     ],
 	"tabBar": {
-		"color": "#7a7e83",
-		"selectedColor": "#0faeff",
+		"color": "#756048",
+		"selectedColor": "#756048",
 		"backgroundColor": "#ffffff",
 		"list": [{
 			"pagePath": "pages/main/main",
-			"text": "首页",
-			"iconPath": "static/img/home.png",
-			"selectedIconPath": "static/img/homeHL.png"
+			"text": "回首页",
+			"iconPath": "static/img/icon_home.png",
+			"selectedIconPath": "static/img/icon_home_select.png"
 		}, {
-			"pagePath": "pages/user/user",
+			"pagePath": "pages/deposit/deposit",
+			"text": "存款",
+			"iconPath": "static/img/icon_financial.png",
+			"selectedIconPath": "static/img/icon_financial_select.png"
+		}, {
+			"pagePath": "pages/chat/chat",
+			"text": "在线客服",
+			"iconPath": "static/img/icon_chat.png",
+			"selectedIconPath": "static/img/icon_chat_select.png"
+		}, {
+			"pagePath": "pages/mylink/mylink",
 			"text": "我的",
-			"iconPath": "static/img/user.png",
-			"selectedIconPath": "static/img/userHL.png"
+			"iconPath": "static/img/icon_mylink.png",
+			"selectedIconPath": "static/img/icon_mylink_select.png"
 		}]
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#0faeff",
+		"navigationBarBackgroundColor": "#653F22",
 		"backgroundColor": "#fbf9fe"
 	},
 	"condition": { //模式配置，仅开发期间生效

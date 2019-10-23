@@ -11,7 +11,7 @@ const store = new Vuex.Store({
 		forcedLogin: false,
 		hasLogin: uni.getStorageSync('Login'),
 		userId: uni.getStorageSync('UserId'),
-		userBalance: "",
+		userBalance: 100,
 		// 存储token
 		Authorization: uni.getStorageSync('Authorization') ? uni.getStorageSync('Authorization') : ''
 

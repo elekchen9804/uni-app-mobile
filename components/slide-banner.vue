@@ -47,17 +47,20 @@
 			};
 		},
 		created() {
-			this.$api.getSlideShow().then(res => {
-				this.slideImgs = res.Data.length === 0 ? this.slideImgs : res.Data;
-			}).catch(res => {
-				console.log('Fail: ', res)
-			})
+			// this.$api.getSlideShow().then(res => {
+			// 	this.slideImgs = res.Data.length === 0 ? this.slideImgs : res.Data;
+			// }).catch(res => {
+			// 	console.log('Fail: ', res)
+			// })
 		},
 		methods: {}
 	}
 </script>
 
 <style>
+	.swiper{
+		height:110px;
+	}
 	.uni-margin-wrap {
 		height: 100%;
 		margin: 0 0upx;

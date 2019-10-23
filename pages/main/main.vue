@@ -1,27 +1,36 @@
 <template>
-	<view class="content">
+	<view class="uni-container">
+		<view class="status_bar">
+			<!-- 这里是状态栏 -->
+		</view>
 		<slide-banner></slide-banner>
-		<view v-if="hasLogin">
+		<news></news>
+		<home-account-info></home-account-info>
+		<!-- <view v-if="hasLogin">
 			<view class="title">
 				您好 {{userId}}，您已成功登录。
 			</view>
-			<account-info></account-info>
+			<home-account-info></home-account-info>
 		</view>
 		<view v-if="!hasLogin">
 			<view class="title">
 				您好 游客。
 			</view>
-		</view>
+		</view> -->
 		<all-game-list></all-game-list>
-		<button type="primary" @tap="openOut">從外部開啟網址</button>
-		<button type="default" @tap="openIn">從內部開啟網址</button>
+		<!-- <button type="primary" @tap="openOut">從外部開啟網址</button>
+		<button type="default" @tap="openIn">從內部開啟網址</button> -->
 	</view>
 </template>
 
 <script>
 	import slideBanner from '../../components/slide-banner.vue'
 	import allGameList from '../../components/all-game-list.vue'
-	import accountInfo from '../../components/account-info.vue'
+	import homeAccountInfo from '../../components/home-account-info.vue'
+	import news from '../../components/news.vue'
+	import {
+		uniNoticeBar
+	} from '@dcloudio/uni-ui'
 	import {
 		mapState
 	} from 'vuex'
@@ -30,10 +39,11 @@
 		components: {
 			slideBanner,
 			allGameList,
-			accountInfo
+			homeAccountInfo,
+			news
 		},
 		computed: mapState(['forcedLogin', 'hasLogin', 'userId']),
-		methods:{
+		methods: {
 			openOut() {
 				// 從外部瀏覽器開啟網址 https://www.html5plus.org/doc/zh_cn/runtime.html
 				// #ifdef APP-PLUS		
@@ -43,7 +53,7 @@
 				// #endif
 			},
 			openIn() {
-				// 從外部瀏覽器開啟網址
+				// 從內部Webview開啟網址
 				// #ifdef APP-PLUS		
 				plus.runtime.openWeb('https://www.yahu911.com/', function(res) {
 					console.log(res);
@@ -83,6 +93,11 @@
 </script>
 
 <style>
+	.status_bar {
+		height: var(--status-bar-height);
+		width: 100%;
+	}
+
 	.title {
 		color: #8f8f94;
 		margin-top: 50upx;
@@ -96,5 +111,9 @@
 
 	.ul>view {
 		line-height: 50upx;
+	}
+
+	all-game-list {
+		width: 100%;
 	}
 </style>
