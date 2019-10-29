@@ -15,7 +15,7 @@
 
 	export default {
 		computed: {
-			...mapState(['hasLogin', 'forcedLogin'])
+			...mapState(['hasLogin'])
 		},
 		methods: {
 			...mapMutations(['logout']),
@@ -26,14 +26,10 @@
 			},
 			bindLogout() {
 				this.logout();
-				/**
-				 * 如果需要强制登录跳转回登录页面
-				 */
-				if (this.forcedLogin) {
-					uni.reLaunch({
-						url: '../login/login',
-					});
-				}
+
+				uni.reLaunch({
+					url: '/pages/main/main',
+				});
 			}
 		}
 	}

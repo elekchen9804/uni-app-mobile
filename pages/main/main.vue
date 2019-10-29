@@ -6,17 +6,6 @@
 		<slide-banner></slide-banner>
 		<news></news>
 		<home-account-info></home-account-info>
-		<!-- <view v-if="hasLogin">
-			<view class="title">
-				您好 {{userId}}，您已成功登录。
-			</view>
-			<home-account-info></home-account-info>
-		</view>
-		<view v-if="!hasLogin">
-			<view class="title">
-				您好 游客。
-			</view>
-		</view> -->
 		<all-game-list></all-game-list>
 		<!-- <button type="primary" @tap="openOut">從外部開啟網址</button>
 		<button type="default" @tap="openIn">從內部開啟網址</button> -->
@@ -28,9 +17,6 @@
 	import allGameList from '../../components/all-game-list.vue'
 	import homeAccountInfo from '../../components/home-account-info.vue'
 	import news from '../../components/news.vue'
-	import {
-		uniNoticeBar
-	} from '@dcloudio/uni-ui'
 	import {
 		mapState
 	} from 'vuex'

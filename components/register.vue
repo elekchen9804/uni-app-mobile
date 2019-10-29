@@ -30,7 +30,7 @@
 		data() {
 			return {
 
-			};
+			}
 		}
 	}
 </script>
@@ -40,11 +40,6 @@
 		width: 100%;
 		background: transparent;
 	}
-
-	.form .has-account {
-		display: none;
-	}
-
 	input {
 		width: 55%;
 		height: 11.5vw;

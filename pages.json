@@ -8,7 +8,8 @@
 		}, {
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "登录",
+				"navigationStyle":"custom"
 			}
 		}, {
 			"path": "pages/reg/reg",

@@ -5,7 +5,7 @@
 			<!-- <span class="clear-btn" ng-click="loginParams.account = ''">x</span> -->
 		</view>
 		<view class="div form-group">
-			<input class="login_password" type="password" v-model="password" placeholder="帐号"></m-input>
+			<input class="login_password" type="password" v-model="password" placeholder="密码"></m-input>
 			<!-- <span class="pw-hide-btn" ng-click="showLoginPassword = !showLoginPassword">
 				<i class="fa fa-eye" aria-hidden="true" ng-show="showLoginPassword"></i>
 				<i class="fa fa-eye-slash" aria-hidden="true" ng-show="!showLoginPassword"></i>
@@ -41,16 +41,10 @@
 			<text>|</text>
 			<navigator url="../pwd/pwd">忘记密码</navigator>
 		</view> -->
-		<!-- <view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}">
-			<view class="oauth-image" v-for="provider in providerList" :key="provider.value">
-				<image :src="provider.image" @tap="oauth(provider.value)"></image>
-			</view>
-		</view> -->
 	</view>
 </template>
 
 <script>
-	import service from '../service.js';
 	import {
 		mapState,
 		mapMutations
@@ -60,6 +54,16 @@
 	export default {
 		components: {
 			mInput
+		},
+		props: {
+			backpage: {
+				type: String,
+				default: ''
+			},
+			backtype: {
+				type: String,
+				default: ''
+			},
 		},
 		data() {
 			return {
@@ -74,35 +78,6 @@
 		computed: mapState(['forcedLogin']),
 		methods: {
 			...mapMutations(['login', 'changeLogin']),
-			initProvider() {
-				const filters = ['weixin', 'qq', 'sinaweibo'];
-				uni.getProvider({
-					service: 'oauth',
-					success: (res) => {
-						if (res.provider && res.provider.length) {
-							for (let i = 0; i < res.provider.length; i++) {
-								if (~filters.indexOf(res.provider[i])) {
-									this.providerList.push({
-										value: res.provider[i],
-										image: '../../static/img/' + res.provider[i] + '.png'
-									});
-								}
-							}
-							this.hasProvider = true;
-						}
-					},
-					fail: (err) => {
-						console.error('获取服务供应商失败：' + JSON.stringify(err));
-					}
-				});
-			},
-			initPosition() {
-				/**
-				 * 使用 absolute 定位，并且设置 bottom 值进行定位。软键盘弹出时，底部会因为窗口变化而被顶上来。
-				 * 反向使用 top 进行定位，可以避免此问题。
-				 */
-				this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
-			},
 			bindLogin() {
 				/**
 				 * 客户端对账号信息进行一些必要的校验。
@@ -132,103 +107,65 @@
 					"Password": this.password
 				};
 
+				uni.showLoading({
+					title: '加载中'
+				});
+
+				// 获得数据 
 				this.$api.accountLogin(data).then(res => {
-					// 获得数据 
-					console.log('Success: ', res)
+					// 寫入登入相關資料
 					this.userToken = 'Bearer ' + res.Data.Token;
 					this.changeLogin({
 						Authorization: this.userToken
 					});
 					this.login(this.account);
-					// 不能用 uni.redirectTo 轉到 tabBar pages
-					uni.switchTab({
-						url: '../main/main'
-					});
+
+					uni.hideLoading();
+
+					//  三種轉跳情境 
+					// uni.redirectTo for 一般 pages
+					// uni.switchTab for other tabBar pages
+					// uni.switchTab for main pages
+					var redirectConfition = [{
+							backtype: '1',
+							action: 'redirectTo'
+						},
+						{
+							backtype: '2',
+							action: 'switchTab'
+						},
+						{
+							backtype: '',
+							action: ''
+						}
+					];
+
+					for (let i = 0; i < redirectConfition.length; i++) {
+						if (this.backtype == '') {
+							uni.switchTab({
+								url: '/pages/main/main'
+							});
+						}
+
+						if (this.backtype == redirectConfition[i].backtype) {
+							uni[redirectConfition[i].action]({
+								url: this.backpage
+							});
+						}
+					}
+
 				}).catch(res => {
 					// 失败进行的操作
 					console.log('Fail: ', res)
 				})
-			},
-			oauth(value) {
-				uni.login({
-					provider: value,
-					success: (res) => {
-						uni.getUserInfo({
-							provider: value,
-							success: (infoRes) => {
-								/**
-								 * 实际开发中，获取用户信息后，需要将信息上报至服务端。
-								 * 服务端可以用 userInfo.openId 作为用户的唯一标识新增或绑定用户信息。
-								 */
-								this.toMain(infoRes.userInfo.nickName);
-							}
-						});
-					},
-					fail: (err) => {
-						console.error('授权登录失败：' + JSON.stringify(err));
-					}
-				});
-			},
-			toMain(userName) {
-				this.login(userName);
-				/**
-				 * 强制登录时使用reLaunch方式跳转过来
-				 * 返回首页也使用reLaunch方式
-				 */
-				if (this.forcedLogin) {
-					uni.reLaunch({
-						url: '../main/main',
-					});
-				} else {
-					uni.navigateBack();
-				}
-
 			}
 		},
 		onReady() {
-			this.initPosition();
-			this.initProvider();
 		}
 	}
 </script>
 
 <style>
-	/* .action-row {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
-
-	.action-row navigator {
-		color: #007aff;
-		padding: 0 20upx;
-	}
-
-	.oauth-row {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
-
-	.oauth-image {
-		width: 100upx;
-		height: 100upx;
-		border: 1upx solid #dddddd;
-		border-radius: 100upx;
-		margin: 0 40upx;
-		background-color: #ffffff;
-	}
-
-	.oauth-image image {
-		width: 60upx;
-		height: 60upx;
-		margin: 20upx;
-	} */
-
 	input {
 		width: 55%;
 		height: 11.5vw;

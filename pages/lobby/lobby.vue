@@ -1,7 +1,7 @@
 <!-- 遊戲大廳內頁 -->
 <template>
 	<view>
-		<game-lobby></game-lobby>
+		<game-lobby :kindName="kindName"></game-lobby>
 	</view>
 </template>
 
@@ -13,17 +13,20 @@
 		},
 		data() {
 			return {
-				lobbyTitle: ''
+				lobbyTitle: '',
+				kindName: ''
 			}
 		},
-		methods: {
-
-		},
-		onLoad: function(option) {
-			this.lobbyTitle = option.Name;
+		onLoad(e) {
+			// 接收轉跳的導頁資訊與類型
+			this.kindName = e.kindName;
+			this.lobbyTitle = this.kindName;
 			uni.setNavigationBarTitle({
 				title: this.lobbyTitle
 			})
+		},
+		methods: {
+
 		}
 	}
 </script>

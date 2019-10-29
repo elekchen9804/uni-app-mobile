@@ -3,7 +3,9 @@
 		<view class="switch-wrapper" :class="{'isRegisterView':isRegisterView}">
 			<view class="div account-box login-page">
 				<view class="form">
-					<login></login>
+					<!-- 導頁資訊傳入 login 組件 -->
+					<login :backpage="backpage" :backtype="backtype"></login>
+					<view class="back-link" @tap="toHome">先去逛逛</view>
 				</view>
 				<view class="div to-register switch-btn" @tap="switchTab">
 					<view class="span">注册新用户</view>
@@ -37,12 +39,24 @@
 		},
 		data() {
 			return {
-				isRegisterView: false
+				isRegisterView: false,
+				backpage: '',
+				backtype: ''
 			}
+		},
+		onLoad(e) {
+			// 接收轉跳的導頁資訊與類型
+			this.backpage = e.backpage;
+			this.backtype = e.backtype;
 		},
 		methods: {
 			switchTab() {
 				this.isRegisterView = !this.isRegisterView;
+			},
+			toHome() {
+				uni.switchTab({
+				    url: '/pages/main/main'
+				});
 			}
 		}
 	}
@@ -298,6 +312,12 @@
 	.switch-wrapper .account-box>.switch-btn {
 		border-radius: 0 12px 12px 0;
 		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	.switch-wrapper .account-box .back-link {
+		color: #fff;
+		text-align: center;
+		width: 100%;
 	}
 
 	.switch-wrapper .reg-box {

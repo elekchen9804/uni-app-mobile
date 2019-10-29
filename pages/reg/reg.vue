@@ -21,7 +21,6 @@
 </template>
 
 <script>
-    import service from '../../service.js';
     import mInput from '../../components/m-input.vue';
 
     export default {
@@ -68,7 +67,7 @@
                     password: this.password,
                     email: this.email
                 }
-                service.addUser(data);
+
                 uni.showToast({
                     title: '注册成功'
                 });

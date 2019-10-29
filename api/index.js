@@ -11,10 +11,17 @@ api.getSlideShow = params =>
 api.gameNavigationSort = params =>
 	request.globalRequest(`${VERSION}/GameNavigationSort/GetGameNavigationSort`, 'POST', params, 0)
 
-// 取得電子遊戲分類清單 (目前是要驗證才能拿資料@@)
-api.getSlotCategories = params => {
-	request.globalRequest(`${VERSION}/Game/GetSlotCategories`, 'POST', params, 1)
-}
+// 取得電子遊戲分類清單 
+api.getSlotCategories = params =>
+	request.globalRequest(`${VERSION}/Game/GetSlotCategories`, 'POST', params, 0)
+
+// 取得電子遊戲入口清單 
+api.getSlotGames = params => 
+	request.globalRequest(`${VERSION}/Game/GetSlotGames`, 'POST', params, 0)
+
+// 取得跑馬燈
+api.getMarquee = params =>
+	request.globalRequest(`${VERSION}/Marquee/GetLastMarquee`, 'POST', params, 0)
 
 // 登入
 api.accountLogin = params =>

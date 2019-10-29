@@ -4,13 +4,16 @@
 			<uni-icons type="closefill" size="12" />
 		</view>
 		<view :class="{ 'uni-noticebar--flex': scrollable || single || moreText }" class="uni-noticebar__content">
-			<view v-if="showIcon === 'true' || showIcon === true" :style="{ backgroundColor: backgroundColor, color: color }" class="uni-noticebar__content-icon">
+			<view v-if="showIcon === 'true' || showIcon === true" :style="{ backgroundColor: backgroundColor, color: color }"
+			 class="uni-noticebar__content-icon">
 				<uni-icons :color="color" type="sound" size="14" />
 			</view>
-			<view :class="{ 'uni-noticebar--scrollable': scrollable, 'uni-noticebar--single': !scrollable && (single || moreText) }" class="uni-noticebar__content-text">
+			<view :class="{ 'uni-noticebar--scrollable': scrollable, 'uni-noticebar--single': !scrollable && (single || moreText) }"
+			 class="uni-noticebar__content-text">
 				<view :id="elId" :style="{ animation: animation, '-webkit-animation': animation }" class="uni-noticebar__content-inner">{{ text }}</view>
 			</view>
-			<view v-if="showGetMore === 'true' || showGetMore === true" :style="{ width: moreText ? '180upx' : '20px' }" class="uni-noticebar__content-more" @click="clickMore">
+			<view v-if="showGetMore === 'true' || showGetMore === true" :style="{ width: moreText ? '180upx' : '20px' }" class="uni-noticebar__content-more"
+			 @click="clickMore">
 				<view v-if="moreText" class="uni-noticebar__content-more-text">{{ moreText }}</view>
 				<uni-icons type="arrowright" size="14" />
 			</view>
@@ -219,7 +222,7 @@
 		padding-left: 100%;
 		white-space: nowrap;
 		display: inline-block;
-		transform: translateZ(0)
+		transform: translateZ(0);
 	}
 
 	.uni-noticebar__content-inner {

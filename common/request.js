@@ -1,13 +1,31 @@
-import urlConfig from './config.js'
+import config from './config.js'
 import store from '../store/index.js'
 
 const request = {}
 const headers = {}
 
-request.globalRequest = (url, method, data, power) => {
-	headers['Content-Type'] = 'application/json'
-	/* 权限判断 是否需要 token */
+// #ifdef H5
+const platformType = 'Mobile';
+const deviceType = 'Other';
+// #endif
 
+if (uni.getSystemInfoSync().platform == "ios") {
+	const platformType = 'App';
+	const deviceType = 'iOS';
+}
+
+if (uni.getSystemInfoSync().platform == "android") {
+	const platformType = 'App';
+	const deviceType = 'Android';
+}
+
+request.globalRequest = (url, method, data, power) => {
+	// 平台判斷的 header 值先拿掉
+	headers['Content-Type'] = 'application/json';
+	// headers['PlatformType'] = platformType;
+	// headers['DeviceType'] = deviceType;
+
+	/* 权限判断 是否需要 token */
 	switch (power) {
 		case 0:
 			headers['Authorization'] = ''
@@ -20,7 +38,7 @@ request.globalRequest = (url, method, data, power) => {
 	}
 
 	return uni.request({
-		url: urlConfig + url,
+		url: config.siteUrl + url,
 		method,
 		data: data,
 		dataType: 'json',
@@ -29,7 +47,7 @@ request.globalRequest = (url, method, data, power) => {
 		let resp = res[1];
 		if (resp.statusCode === 200) {
 			return resp.data
-		} else {		
+		} else {
 			throw resp
 		}
 	}).catch(parmas => {

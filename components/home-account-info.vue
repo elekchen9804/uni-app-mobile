@@ -81,7 +81,7 @@
 			toMylink() {
 				if (this.hasLogin) {
 					uni.switchTab({
-						url: '../mylink/mylink'
+						url: '/pages/mylink/mylink'
 					});
 				} else {
 					this.toLogin()
@@ -89,13 +89,13 @@
 			},
 			toLogin() {
 				uni.navigateTo({
-					url: '../login/login'
+					url: '/pages/login/login'
 				})
 			},
 			toDeposit() {
 				if (this.hasLogin) {
 					uni.switchTab({
-						url: '../deposit/deposit'
+						url: '/pages/deposit/deposit'
 					})
 				} else {
 					this.toLogin()
@@ -104,7 +104,7 @@
 			toWithdraw() {
 				if (this.hasLogin) {
 					uni.navigateTo({
-						url: '../Withdraw/Withdraw'
+						url: '/pages/Withdraw/Withdraw'
 					})
 				} else {
 					this.toLogin()
@@ -113,7 +113,7 @@
 			toPromotion() {
 				if (this.hasLogin) {
 					uni.navigateTo({
-						url: '../Promotion/Promotion'
+						url: '/pages/Promotion/Promotion'
 					})
 				} else {
 					this.toLogin()

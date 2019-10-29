@@ -12,11 +12,17 @@
 		},
 		data() {
 			return {
-				
+
 			}
 		},
-		methods: {
-			
+		onShow() {
+			// 登入檢查，沒登入就停止
+			let pageInfo = getCurrentPages(),
+				loginRes = this.checkLogin(pageInfo, '2');
+				
+			if (!loginRes) {
+				return false;
+			}
 		}
 	}
 </script>

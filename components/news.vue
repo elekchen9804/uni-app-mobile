@@ -1,21 +1,21 @@
 <template>
 	<view>
-		<uni-notice-bar show-icon="true" single="true" background-color="transparent" color="#5b5b5b" text="我是跑馬燈我是跑馬燈我是跑馬燈我是跑馬燈我是跑馬燈我是跑馬燈我是跑馬燈我是跑馬燈我是跑馬燈"></uni-notice-bar>
+		<uni-notice-bar single="true" show-icon="true" background-color="transparent" color="#5b5b5b" :text="newsContent"></uni-notice-bar>
 	</view>
 </template>
 
 <script>
-	import {uniNoticeBar} from '@dcloudio/uni-ui'
+	import uniNoticeBar from '@/components/uni-ui/uni-notice-bar/uni-notice-bar.vue'
 	export default {
 		components: {uniNoticeBar},
 		data() {
 			return {
-				newsContent: '143431241234123431412341234124123431243141341324'
+				newsContent: ''
 			};
 		},
 		created() {
-			this.$api.getSlideShow().then(res => {
-				this.slideImgs = res.Data.length === 0 ? this.slideImgs : res.Data;
+			this.$api.getMarquee().then(res => {
+				this.newsContent = res.Data.join(' ');
 			}).catch(res => {
 				console.log('Fail: ', res)
 			})
