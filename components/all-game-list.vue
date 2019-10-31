@@ -31,10 +31,14 @@
 		},
 		computed: mapState(['hasLogin']),
 		created() {
-
+			uni.showLoading({
+				title: '加载中'
+			});
+			
 			this.$api.gameNavigationSort().then(res => {
 				this.gameNavigationSort = res.NavigationInfos;
 				this.selected = this.gameNavigationSort[2].NavigationKind;
+				uni.hideLoading();
 			}).catch(res => {
 				console.log('Fail: ', res)
 			})

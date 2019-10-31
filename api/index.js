@@ -3,6 +3,7 @@ import request from '@/common/request.js'
 const api = {}
 const VERSION = 'V1'
 
+/* 需要token: 1 ;  */
 // 大圖輪播
 api.getSlideShow = params =>
 	request.globalRequest(`${VERSION}/Cdn/GetSlideShow`, 'POST', params, 0)

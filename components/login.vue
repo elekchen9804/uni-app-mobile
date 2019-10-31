@@ -75,7 +75,6 @@
 				positionTop: 0
 			}
 		},
-		computed: mapState(['forcedLogin']),
 		methods: {
 			...mapMutations(['login', 'changeLogin']),
 			bindLogin() {
@@ -126,7 +125,7 @@
 					// uni.redirectTo for 一般 pages
 					// uni.switchTab for other tabBar pages
 					// uni.switchTab for main pages
-					var redirectConfition = [{
+					var redirectCondition = [{
 							backtype: '1',
 							action: 'redirectTo'
 						},
@@ -140,15 +139,15 @@
 						}
 					];
 
-					for (let i = 0; i < redirectConfition.length; i++) {
+					for (let i = 0; i < redirectCondition.length; i++) {
 						if (this.backtype == '') {
 							uni.switchTab({
 								url: '/pages/main/main'
 							});
 						}
 
-						if (this.backtype == redirectConfition[i].backtype) {
-							uni[redirectConfition[i].action]({
+						if (this.backtype == redirectCondition[i].backtype) {
+							uni[redirectCondition[i].action]({
 								url: this.backpage
 							});
 						}

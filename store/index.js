@@ -5,13 +5,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	state: {
-		/**
-		 * 是否需要强制登录
-		 */
-		forcedLogin: false,
 		hasLogin: uni.getStorageSync('Login'),
 		userId: uni.getStorageSync('UserId'),
-		userBalance: 100,
+		userBalance: 0,
 		// 存储token
 		Authorization: uni.getStorageSync('Authorization') ? uni.getStorageSync('Authorization') : ''
 

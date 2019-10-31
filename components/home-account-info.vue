@@ -66,16 +66,19 @@
 		},
 		computed: mapState(['hasLogin', 'userId', 'userBalance']),
 		methods: {
-			...mapMutations(['changeUserBalnce'])
+			...mapMutations(['changeUserBalance'])
 		},
 		created() {
-			// this.$api.getUserBalance().then(res => {
-			// 	// 获得数据 
-			// 	this.changeUserBalnce(res.Balance);
-			// }).catch(res => {
-			// 	// 失败进行的操作
-			// 	console.log('Fail: ', res)
-			// })
+			if (this.hasLogin) {
+				this.$api.getUserBalance().then(function(res) {
+					// 获得数据 
+					console.log(res.Balance)
+					this.changeUserBalance(res.Balance);
+				}).catch(res => {
+					// 失败进行的操作
+					console.log('Fail: ', res)
+				})
+			}
 		},
 		methods: {
 			toMylink() {
@@ -93,31 +96,20 @@
 				})
 			},
 			toDeposit() {
-				if (this.hasLogin) {
-					uni.switchTab({
-						url: '/pages/deposit/deposit'
-					})
-				} else {
-					this.toLogin()
-				}
+				// tabBar 上的项目要用 switchTab
+				uni.switchTab({
+					url: '/pages/deposit/deposit'
+				})
 			},
 			toWithdraw() {
-				if (this.hasLogin) {
-					uni.navigateTo({
-						url: '/pages/Withdraw/Withdraw'
-					})
-				} else {
-					this.toLogin()
-				}
+				uni.navigateTo({
+					url: '/pages/withdraw/withdraw'
+				})
 			},
 			toPromotion() {
-				if (this.hasLogin) {
-					uni.navigateTo({
-						url: '/pages/Promotion/Promotion'
-					})
-				} else {
-					this.toLogin()
-				}
+				uni.navigateTo({
+					url: '/pages/promotion/promotion'
+				})
 			},
 			openAccountModal() {
 				this.$refs.popup.open()

@@ -19,7 +19,7 @@ Vue.prototype.$url = url
 Vue.prototype.$config = config
 
 // 可供全域調用的登入檢查
-Vue.prototype.checkLogin = function(pageInfo, backtype) {
+Vue.prototype.$checkLogin = function(pageInfo, backtype) {
 	let isLogin = uni.getStorageSync('Login'),
 		backpage = parsePath(pageInfo) || '';
 		

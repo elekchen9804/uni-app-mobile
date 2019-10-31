@@ -19,14 +19,14 @@ if (uni.getSystemInfoSync().platform == "android") {
 	const deviceType = 'Android';
 }
 
-request.globalRequest = (url, method, data, power) => {
+request.globalRequest = (url, method, data, auth) => {
 	// 平台判斷的 header 值先拿掉
 	headers['Content-Type'] = 'application/json';
-	// headers['PlatformType'] = platformType;
-	// headers['DeviceType'] = deviceType;
+	headers['PlatformType'] = platformType;
+	headers['DeviceType'] = deviceType;
 
 	/* 权限判断 是否需要 token */
-	switch (power) {
+	switch (auth) {
 		case 0:
 			headers['Authorization'] = ''
 			break;

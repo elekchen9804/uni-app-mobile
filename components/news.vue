@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	import uniNoticeBar from '@/components/uni-ui/uni-notice-bar/uni-notice-bar.vue'
+	import {uniNoticeBar} from '@dcloudio/uni-ui'
 	export default {
 		components: {uniNoticeBar},
 		data() {

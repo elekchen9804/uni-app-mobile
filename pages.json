@@ -3,13 +3,13 @@
 		{
 			"path": "pages/main/main",
 			"style": {
-				 "navigationStyle":"custom"
+				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录",
-				"navigationStyle":"custom"
+				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "pages/reg/reg",
@@ -17,51 +17,35 @@
 				"navigationBarTitleText": "注册"
 			}
 		}, {
-			"path": "pages/pwd/pwd",
-			"style": {
-				"navigationBarTitleText": "找回密码"
-			}
+			"path": "pages/lobby/lobby",
+			"style": {}
 		}, {
-			"path": "pages/user/user",
+			"path": "pages/mylink/mylink",
 			"style": {
-				"navigationBarTitleText": "我的頁面"
-			}
-		}
-	    ,{
-            "path" : "pages/lobby/lobby",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/mylink/mylink",
-            "style" : {
 				"navigationBarTitleText": "會員中心"
 			}
-        }
-        ,{
-            "path" : "pages/chat/chat",
-            "style" : {
+		}, {
+			"path": "pages/chat/chat",
+			"style": {
 				"navigationBarTitleText": "在线客服"
 			}
-        }
-        ,{
-            "path" : "pages/promotion/promotion",
-            "style" : {
+		}, {
+			"path": "pages/promotion/promotion",
+			"style": {
 				"navigationBarTitleText": "优惠活动"
 			}
-        }
-        ,{
-            "path" : "pages/deposit/deposit",
-            "style" : {
+		}, {
+			"path": "pages/deposit/deposit",
+			"style": {
 				"navigationBarTitleText": "存款页面"
 			}
-        }
-        ,{
-            "path" : "pages/Withdraw/Withdraw",
-            "style" : {
+		}, {
+			"path": "pages/withdraw/withdraw",
+			"style": {
 				"navigationBarTitleText": "取款页面"
 			}
-        }
-    ],
+		}
+	],
 	"tabBar": {
 		"color": "#756048",
 		"selectedColor": "#756048",
